@@ -1,0 +1,79 @@
+#:import gch kivy.utils.get_color_from_hex
+
+<HomePage>:
+    MDBoxLayout:
+        orientation: "vertical"
+
+        MDTopAppBar:
+            title: "Инвентаризация"
+            pos_hint: {"top": 1}
+            md_bg_color: "#5696fc"
+            specific_text_color: "#ffffff"
+            use_overflow: True
+            right_action_items:
+                [
+                ["send", lambda x: print(x), "Отправить отчет", "Отправить отчет"],
+                ["message-question", lambda x: print(x), "тех. поддержка", "тех. поддержка"]
+                ]
+
+        MDBottomNavigation:
+            panel_color: "#5696fc"
+            selected_color_background: gch("#5f81b8")
+            text_color_active: "lightgray"
+
+            MDBottomNavigationItem:
+                name: 'camera_screen'
+                text: 'Камера'
+                icon: 'camera'
+
+                MDBoxLayout:
+                    orientation: "horizontal"
+                    ToggleButton:
+                        text: 'Запустить'
+                        size_hint_y: None
+                        height: '48dp'
+                    Button:
+                        text: 'Сделать снимок'
+                        size_hint_y: None
+                        height: '48dp'
+
+            MDBottomNavigationItem:
+                name: 'assets_screen'
+                text: 'Имущество'
+                icon: 'archive'
+
+                MDBoxLayout:
+                    orientation: "vertical"
+
+                    MDBoxLayout:
+                        orientation: "horizontal"
+                        size_hint_y: None
+                        height: self.minimum_height
+                        MDTextField:
+                            hint_text: "ИНВ №"
+                            mode: "rectangle"
+                            max_text_length: 12
+
+                        MDFloatingActionButton:
+                            icon: "magnify"
+                            type: "standard"
+                            theme_icon_color: "Custom"
+                            md_bg_color: "#5696fc"
+                            text_color: "#ffffff"
+
+                    MDScrollView:
+                        GridLayout:
+                            id: assets
+                            size_hint_y: None
+                            height: self.height
+                            spacing: "5dp"
+                            cols: 1
+                            md_bg_color: "#6e8ab5"
+
+            MDBottomNavigationItem:
+                name: 'magnify_screen'
+                text: 'Справочник'
+                icon: 'magnify'
+
+                MDBoxLayout:
+                    orientation: "vertical"
